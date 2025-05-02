@@ -28,19 +28,19 @@ const AppStatics: React.FC<AppStaticsComponentProps> = ({ statistics }) => {
     {
       icon: FaBookReader,
       color: "#fecaca",
-      heading: statistics.reader,
+      heading: statistics?.reader,
       description: "Monthly Readers",
     },
     {
       icon: TfiWrite,
       color: "#fecaca",
-      heading: statistics.article,
+      heading: statistics?.article,
       description: "Articles Written",
     },
     {
       icon: TbRibbonHealth,
       color: "#fecaca",
-      heading: statistics.healthTopic,
+      heading: statistics?.healthTopic,
       description: "Health Topics Covered",
     },
   ];
