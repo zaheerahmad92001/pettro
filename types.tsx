@@ -6,6 +6,11 @@ export interface Statistics {
     healthTopic: string;
   }
 
+ export interface CategoryWithSubcategory {
+    categoryId: string;
+    subcategoryId: string;
+  }
+
 //   interface PetCareConnectData {
 //     // Define the fields here
 //     title: string;

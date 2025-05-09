@@ -6,29 +6,14 @@ import Navbar from "@/components/navbar";
 import AppLinks from "@/components/applinks/appLinks";
 import Footer from "@/components/footer";
 import ReduxProvider from "@/redux/reduxProvider";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ReactQueryProvider from "./api/ReactQueryProvider";
+const queryClient = new QueryClient();
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-// const merienda = Merienda({
-//   weight: "400",
-//   variable: "--font-merienda",
-//   subsets: ["latin"],
-// });
-
-// const montserrat = Montserrat({
-//   weight: "400",
-//   variable: "--font-merienda",
-//   subsets: ["latin"],
-// });
-
-
 
 export const metadata: Metadata = {
   title: "Pettro",
@@ -47,10 +32,12 @@ export default function RootLayout({
           antialiased bg-white` }
       >
         <ReduxProvider>
+        <ReactQueryProvider>
         <Navbar/>
         <AppLinks />
         {children}
         <Footer/>
+        </ReactQueryProvider>
         </ReduxProvider>
       </body>
     </html>

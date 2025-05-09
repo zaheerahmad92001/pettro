@@ -15,7 +15,6 @@ const Navbar = () => {
   const [isSearchPress, setIsSearchPress] = useState(false);
 
   const toggleSearch = () => {
-    console.log("Search button clicked");
     setIsSearchPress((prev) => !prev);
     setIsMenuOpen(false); // Close menu if it's open
   };
@@ -26,7 +25,7 @@ const Navbar = () => {
       return;
     }
     setIsMenuOpen((prev) => !prev);
-    setIsSearchPress(false); // Exit search mode if active
+    setIsSearchPress(false);
   };
 
   return (
