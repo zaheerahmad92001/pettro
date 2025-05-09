@@ -42,50 +42,6 @@ export default function Home() {
     categoriesWithSubcategories
   );
 
-  // const dispatch = useDispatch<AppDispatch>();
-
-  // const {
-  //    data: statistics,
-  //    loading,
-  //    petCareData,
-  //    homeContent,
-  // } = useSelector((state: RootState) => state.homeStatistics) as {
-  //    data: Statistics;
-  //   loading: boolean;
-  //    petCareData: PetCareData;
-  //   homeContent: ContentItem[];
-  // };
-
-  // useEffect(() => {
-  //   const fetchStatistics = async () => {
-  //      await dispatch(fetchHomeStatistics());
-  //      await dispatch(fetchPetCareContent());
-  //   };
-  //     fetchStatistics();
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   const categoriesWithSubcategories = [
-  //     { categoryId: "dogs", subcategoryId: "Breeds" },
-  //     { categoryId: "dogs", subcategoryId: "Food" },
-  //     { categoryId: "dogs", subcategoryId: "Health" },
-  //     { categoryId: "cats", subcategoryId: "Breeds" },
-  //     { categoryId: "cats", subcategoryId: "Health" },
-  //     { categoryId: "cats", subcategoryId: "Food" },
-  //     { categoryId: "horses", subcategoryId: "Breeds" },
-  //     { categoryId: "horses", subcategoryId: "Health" },
-  //     { categoryId: "horses", subcategoryId: "Food" },
-  //   ];
-
-  //   const fetchLandingPageContent = async () => {
-  //     await dispatch(
-  //       fetchHomeContentByCategories({ categoriesWithSubcategories })
-  //     );
-  //   };
-  //   fetchLandingPageContent();
-
-  // }, [dispatch]);
-
   const DogBreedsData = homeContent
     ?.filter(
       (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Breeds"
@@ -155,19 +111,17 @@ export default function Home() {
         <HeroSection statistics={statistics} data={horseFood} />
 
         <div className="mt-24 px-10">
-
-        <h1 className="font-bold text-center font-geistMono capitalize text-2xl md:text-3xl lg:text-4xl xl:text-5xl mx-auto leading-tight tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
-  <span className="block animate-fade-in-up delay-[100ms]">Discover dog and cat breed guides,</span>
-  <span className="block animate-fade-in-up delay-[300ms]">essential pet health tips,nutrition advice,</span>
-  <span className="block animate-fade-in-up delay-[500ms]">and more all in one place.</span>
-</h1>
-        {/* <h1 className="font-bold text-center text-black font-geistMono capitalize 
-  text-2xl md:text-2xl lg:text-3xl xl:text-4xl mx-auto">
-  <span className="block">Discover dog and cat breed guides,</span>
-  <span className="block">essential pet health tips,</span>
-  <span className="block">nutrition advice, and more all in one place.</span>
-</h1> */}
-          
+          <h1 className="font-bold text-center font-geistMono capitalize text-2xl md:text-3xl lg:text-4xl xl:text-5xl mx-auto leading-tight tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
+            <span className="block animate-fade-in-up delay-[100ms]">
+              Discover dog and cat breed guides,
+            </span>
+            <span className="block animate-fade-in-up delay-[300ms]">
+              essential pet health tips,
+            </span>
+            <span className="block animate-fade-in-up delay-[500ms]">
+             nutrition advice,and more all in one place.
+            </span>
+          </h1>
         </div>
 
         <div className="mt-24 px-10 flex flex-col justify-center items-center">

@@ -6,9 +6,9 @@ import Navbar from "@/components/navbar";
 import AppLinks from "@/components/applinks/appLinks";
 import Footer from "@/components/footer";
 import ReduxProvider from "@/redux/reduxProvider";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ReactQueryProvider from "./api/ReactQueryProvider";
-const queryClient = new QueryClient();
+import { Analytics } from '@vercel/analytics/next';
+
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -36,6 +36,7 @@ export default function RootLayout({
         <Navbar/>
         <AppLinks />
         {children}
+        <Analytics />
         <Footer/>
         </ReactQueryProvider>
         </ReduxProvider>
