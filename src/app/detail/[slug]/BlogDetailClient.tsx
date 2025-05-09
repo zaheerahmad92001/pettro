@@ -1,73 +1,77 @@
 "use client";
-import { useParams } from "next/navigation";
+
+import React, { useEffect, useRef } from "react";
 import { BaseHeading } from "@/components/heading";
 import PettroCard from "@/components/pettroCard";
 import ProductCard from "@/components/productCard";
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchRelatedContent } from "@/redux/features/relatedArticalsAction";
-import { fetchDocumentById } from "@/redux/features/detailAction";
 import Loader from "@/components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchDocumentById } from "@/redux/features/detailAction";
+import { fetchRelatedContent } from "@/redux/features/relatedArticalsAction";
 import { AppDispatch, RootState } from "@/redux/store";
 
-const BlogDetailClient = () => {
+export interface ContentBlock {
+  type: string;
+  value: string;
+}
+
+export interface ContentItem {
+  id: string;
+  categoryId: string;
+  subcategoryId: string;
+  content: ContentBlock[];
+  [key: string]: unknown;
+}
+
+interface BlogDetailClientProps {
+  slug: string;
+}
+
+export default function BlogDetailClient({ slug }: BlogDetailClientProps) {
   const dispatch = useDispatch<AppDispatch>();
-  const { relatedArticals, loading } = useSelector((state: RootState) => state.relatedArticals);
-  const { productData } = useSelector((state: RootState) => state.detail);
+  const { productData, loading } = useSelector((s: RootState) => s.detail);
+  const { relatedArticals } = useSelector((s: RootState) => s.relatedArticals);
 
-  const params = useParams();
-  const id = params.slug;
-
-  const isDataAvailable = productData && productData?.content?.length > 0;
-
-  const prevIdsRef = useRef<{
-    categoryId: string | null;
-    subcategoryId: string | null;
-  }>({
-    categoryId: null,
-    subcategoryId: null,
-  });
+  const prevIdsRef = useRef<{ categoryId?: string; subcategoryId?: string }>(
+    {}
+  );
+  const isDataAvailable =
+    Array.isArray(productData?.content) && productData.content.length > 0;
 
   useEffect(() => {
-    const fetchRelatedData = async () => {
-      if (!isDataAvailable || !productData) return;
-
-      const categoryId = productData?.categoryId;
-      const subcategoryId = productData?.subcategoryId;
-
-      const prev = prevIdsRef.current;
-      const isSame =
-        prev.categoryId === categoryId && prev.subcategoryId === subcategoryId;
-
-      if (isSame) return;
-
-      prevIdsRef.current = { categoryId, subcategoryId };
-      await dispatch(fetchRelatedContent({ categoryId, subcategoryId }));
-    };
-
-    fetchRelatedData();
-  }, [dispatch, productData, isDataAvailable]);
-
-  useEffect(() => {
-    const fetchDetail = async () => {
-      if (typeof id === "string") {
-        dispatch(
-          fetchDocumentById({ collectionName: "content", documentId: id })
-        );
-      }
-    };
-    if (productData && Object.keys(productData).length === 0) {
-      fetchDetail();
+    if (slug) {
+      dispatch(
+        fetchDocumentById({ collectionName: "content", documentId: slug })
+      );
     }
-  }, [dispatch, id, productData]);
+  }, [dispatch, slug]);
+
+  useEffect(() => {
+    if (!isDataAvailable) return;
+
+    const { categoryId, subcategoryId } = productData;
+    const prev = prevIdsRef.current;
+
+    if (
+      prev.categoryId === categoryId &&
+      prev.subcategoryId === subcategoryId
+    ) {
+      return; // no change, skip
+    }
+
+    prevIdsRef.current = { categoryId, subcategoryId };
+    dispatch(fetchRelatedContent({ categoryId, subcategoryId }));
+  }, [dispatch, isDataAvailable, productData]);
 
   return (
-    <div className="mx-0 sm:mx-[5%] md:mx-[20%]">
+    <div className="mx-4 sm:mx-[5%] md:mx-[20%]">
+      {loading && <Loader />}
       {isDataAvailable ? (
         <>
-          {productData?.content?.map((item, index) => (
-            <ProductCard key={index} index={index} item={item} />
+          {productData.content.map((block, idx) => (
+            <ProductCard key={idx} index={idx} item={block} />
           ))}
+
           <div className="mt-16 px-4 sm:px-6 lg:px-8">
             <BaseHeading textPosition="start" textTransform="capitalize">
               Related Articles
@@ -75,32 +79,31 @@ const BlogDetailClient = () => {
           </div>
 
           <div className="container">
-            {loading && <Loader />}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
               {relatedArticals
-                .filter((item) => item.id !== id)
-                .map((item, index) => (
-                  <div key={index}>
+                .filter((item) => item.id !== slug)
+                .map((item, idx) => (
+                  <div key={idx}>
                     <PettroCard
                       item={item}
-                      section={productData?.subcategoryId}
+                      section={productData.subcategoryId}
                     />
                   </div>
                 ))}
             </div>
           </div>
         </>
-      ) : (
-        <div className="min-h-screen flex flex-col items-center justify-center text-center text-gray-600 px-4">
+      ) : !loading ? (
+        <div className="min-h-screen flex flex-col items-center justify-center text-gray-600 px-4 text-center">
           <h2 className="text-3xl font-semibold mb-4">😕 Content Not Found</h2>
           <p className="text-lg max-w-xl">
-            We couldn’t find any blog or product that matches this page. Please
-            check the URL or go back to explore more content.
+            We couldn’t find any article matching this page. Please check the
+            URL or explore more content.
           </p>
         </div>
+      ) : (
+        <div className="min-h-screen flex flex-col items-center justify-center text-gray-600 px-4 text-center"></div>
       )}
     </div>
   );
-};
-
-export default BlogDetailClient;
+}

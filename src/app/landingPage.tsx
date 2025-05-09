@@ -97,11 +97,10 @@ export default function Home() {
       {loading && <Loader />}
       <div className="w-full mx-2 mt-8">
         <h1
-          className="flex flex-wrap font-bold text-center text-black justify-center items-center font-geistMono 
-          text-2xl 
-          md:text-3xl 
-          lg:text-4xl 
-          xl:text-5xl 
+          className="flex flex-wrap font-extrabold text-center text-black justify-center items-center font-geistMono 
+         text-xl 
+         md:text-2xl 
+         lg:text-3xl
           mx-auto"
         >
           {statistics?.homeHeading}
@@ -111,15 +110,15 @@ export default function Home() {
         <HeroSection statistics={statistics} data={horseFood} />
 
         <div className="mt-24 px-10">
-          <h1 className="font-bold text-center font-geistMono capitalize text-2xl md:text-3xl lg:text-4xl xl:text-5xl mx-auto leading-tight tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-red-500">
+          <h1 className="font-extrabold text-center font-geistMono capitalize text-xl md:text-2xl lg:text-3xl mx-auto leading-tight ">
             <span className="block animate-fade-in-up delay-[100ms]">
               Discover dog and cat breed guides,
             </span>
-            <span className="block animate-fade-in-up delay-[300ms]">
-              essential pet health tips,
+            <span className="block animate-fade-in-up delay-[100ms]">
+             pet health tips and nutrition essential advice.
             </span>
-            <span className="block animate-fade-in-up delay-[500ms]">
-             nutrition advice,and more all in one place.
+            <span className="block animate-fade-in-up delay-[100ms]">
+             All at one place.
             </span>
           </h1>
         </div>
