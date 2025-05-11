@@ -10,7 +10,7 @@ export const makeMetaDescription=(text = '', maxLen = 160)=> {
 
   const STOP_WORDS = new Set([
     'a','an','and','the','of','in','to','for','with','on','by','is','it','this',
-    'that','from','as','are','at','be','or','was','were','which','you','your','but'
+    'that','from','as','are','at','be','or','was','were','which','you','your','but','being','Being'
   ]);
 
   function generateNgrams(tokens, maxN = 3) {

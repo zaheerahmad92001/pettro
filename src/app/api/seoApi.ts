@@ -44,3 +44,83 @@ export async function getCategoryTitle(categoryId: string, subcategoryId: string
     return [];
   }
 }
+
+function transformCategoryData(data) {
+  const result = [];
+
+  data.forEach((item) => {
+    item.subcategories
+      ?.filter((sub) => sub.toLowerCase() !== "supplements") // Exclude "Supplements"
+      .forEach((sub) => {
+        result.push({
+          category: item.id,
+          subcategory: sub,
+        });
+      });
+  });
+
+  return result;
+}
+
+// will open when suplement data added
+
+// function transformCategoryData(data) {
+//   const result = [];
+
+//   data.forEach((item) => {
+//     item.subcategories?.forEach((sub) => {
+//       result.push({
+//         category: item.id,
+//         subcategory: sub,
+//       });
+//     });
+//   });
+
+//   return result;
+// }
+
+export async function getAllCategorySubcategoryPairs() {
+  try {
+    const categoriesRef = collection(db, "categories");
+    const snapshot = await getDocs(categoriesRef);
+
+    const allowed = ["horses", "cats", "dogs", "birds"];
+
+    const categories = snapshot.docs
+      .filter((doc) => allowed.includes(doc.id)) // or doc.data().name if you store name separately
+      .map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+    const transformed = transformCategoryData(categories);
+    return transformed;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
+
+// will open this and regenerate sitemap when all categories data added
+
+// export async function getAllCategorySubcategoryPairs() {
+//   try {
+//     const categoriesRef = collection(db, "categories");
+//     const snapshot = await getDocs(categoriesRef);
+
+//     const categories = snapshot.docs.map((doc) => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
+//     const transformed = transformCategoryData(categories);
+//     return transformed;
+//   } catch (error) {
+//     console.error("Error fetching categories:", error);
+//     return [];
+//   }
+// }
+
+export async function getAllProductIds(): Promise<string[]> {
+  const snapshot = await getDocs(collection(db, 'content'));
+  return snapshot.docs.map((doc) => doc.id);
+}

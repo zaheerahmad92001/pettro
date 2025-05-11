@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { generatePageMetadata } from '@/components/seo';
 import BlogDetail from './BlogDetailClient';
-import { getBlogPost } from '@/app/api/seoApi';
+import { getAllProductIds, getBlogPost } from '@/app/api/seoApi';
 import {extractMultiWordsKeywords, extractSingleKeywords, makeMetaDescription } from '@/app/functions';
 
 
@@ -42,6 +42,17 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     author:'pettro.co'
   });
 }
+
+export async function generateStaticParams() {
+  const allPairs = await getAllProductIds();
+  return allPairs?.map((item) => {
+    return({
+    slug: encodeURIComponent(item)
+  })}
+);
+}
+
+
 export default function Page({ params }: { params: { slug: string } }) {
   return <BlogDetail slug={params.slug} />;
 }

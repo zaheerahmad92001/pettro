@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { generatePageMetadata } from '@/components/seo';
 import ViewAll from '../../viewAllClient';
-import { getCategoryTitle } from '@/app/api/seoApi';
+import { getAllCategorySubcategoryPairs, getCategoryTitle } from '@/app/api/seoApi';
 import { formatTitle } from '@/app/functions';
 
 export async function generateMetadata({ params }): Promise<Metadata> {
@@ -15,7 +15,6 @@ export async function generateMetadata({ params }): Promise<Metadata> {
     : "";
 
   const formatted = formatTitle(decodedSlug);
-
   const response = await getCategoryTitle(
      decodedCategory,
      formatted === "Food And Diet" ? "Food" : formatted,
@@ -24,17 +23,26 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const description = response[0]?.description;
   const keyword = response[0]?.keyword;
 
- 
-
   return generatePageMetadata({
     title: title,
     description:description,
-    slug: `/view-all/${slug}}`,
+    slug: `/view-all/${decodedCategory}/${formatted === "Food And Diet" ? "Food" : formatted}`,
     image: '/pettro-img.png',
     keywords:keyword,
     author:'pettro.co'
   });
 }
+
+export async function generateStaticParams() {
+  const allPairs = await getAllCategorySubcategoryPairs();
+  return allPairs?.map((item) => {
+    return({
+    category: encodeURIComponent(item.category),
+    slug: encodeURIComponent(item.subcategory)
+  })}
+);
+}
+
 export default async function Page({ params }: { params: { category:string, slug: string  } }) {
   const slug = decodeURIComponent(params.slug);
   const category = decodeURIComponent(params.category);
@@ -45,10 +53,11 @@ export default async function Page({ params }: { params: { category:string, slug
     formatted === "Food And Diet" ? "Food" : formatted
   );
 
-  const seoData = response[0];
+  const seoData = Array.isArray(response) && response.length > 0 ? response[0] : {};
+
   const plainSeoData = {
     ...seoData,
-    createdAt: seoData?.createdAt?.toDate().toISOString(),
+      createdAt: seoData?.createdAt?.toDate?.().toISOString?.() ?? null,
   };
   return (
     <ViewAll
