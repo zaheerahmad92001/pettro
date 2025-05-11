@@ -110,7 +110,7 @@ export default function Home() {
         <HeroSection statistics={statistics} data={horseFood} />
 
         <div className="mt-24 px-10">
-          <h1 className="font-extrabold text-center font-geistMono capitalize text-xl md:text-2xl lg:text-3xl mx-auto leading-tight ">
+          <h1 className="text-black font-extrabold text-center font-geistMono capitalize text-xl md:text-2xl lg:text-3xl mx-auto leading-tight ">
             <span className="block animate-fade-in-up delay-[100ms]">
               Discover dog and cat breed guides,
             </span>

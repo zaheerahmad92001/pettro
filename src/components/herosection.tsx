@@ -2,6 +2,11 @@
 import React from "react";
 import Image from "next/image";
 import { ContentBlock } from "@/redux/features/linksAction";
+import { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import {useRouter } from "next/navigation";
+import { setDetail } from "@/redux/features/detailSlice";
+import { ContentItem } from "../../types";
 
 interface DataItem {
   content: ContentBlock[];
@@ -18,10 +23,18 @@ interface HeroSectionProps {
 
 const HeroSection = (props: HeroSectionProps) => {
   const { statistics, data } = props;
-  
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
 
+const handleClick = (item:ContentItem) => {
+    if(!item) return;
+    const id = item?.id;
+    dispatch(setDetail(item));
+    router.push(`/detail/${id}`);
+  };
   return (
-    <div className="flex justify-center items-start gap-4 mx-8 mt-10 flex-col sm:flex-col lg:flex-row">
+    <div 
+    className="flex justify-center items-start gap-4 mx-8 mt-10 flex-col sm:flex-col lg:flex-row">
       <div className="overflow-hidden w-full sm:w-full lg:w-2/4">
         {/* Ensure imageBase64 is a valid base64 string */}
         <Image
@@ -48,6 +61,7 @@ const HeroSection = (props: HeroSectionProps) => {
             const isHiddenOnSmallScreens = index >= 2 ? "hidden lg:flex" : "";
             return (
               <div
+                onClick={()=>handleClick(item)}
                 key={index}
                 className={`flex flex-col ${isHiddenOnSmallScreens} items-start justify-start gap-4 sm:flex-col lg:flex-row hover:bg-custom-gray p-2 transition-all duration-300 ease-in-out`}
               >

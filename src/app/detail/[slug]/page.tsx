@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { generatePageMetadata } from '@/components/seo';
 import BlogDetail from './BlogDetailClient';
 import { getBlogPost } from '@/app/api/seoApi';
-import { extractKeywords, extractMultiWordsKeywords, extractSingleKeywords, makeMetaDescription } from '@/app/functions';
+import {extractMultiWordsKeywords, extractSingleKeywords, makeMetaDescription } from '@/app/functions';
 
 
 
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   const SinglWordKeyword = extractSingleKeywords(description, 60);
   const allKeywords = [...MultiWordsKeywords, ...SinglWordKeyword ,...MultiWordsKeywordsFromHeading];
   const uniqueKeywords = Array.from(new Set(allKeywords));
-console.log('uniqueKeywords',uniqueKeywords)
+
 
   return generatePageMetadata({
     title: heading,
