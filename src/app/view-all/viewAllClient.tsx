@@ -60,7 +60,7 @@ const ViewAll: React.FC<Props> = ({ category, slug, seoData }) => {
         >
           {seoData?.title}
         </h1>
-        <span className="block w-[50%] mx-auto text-center mt-2 text-black-300 text-lg">
+        <span className="block w-[60%] mx-auto text-center mt-2 text-black-300 text-lg">
     {seoData?.description}
   </span>
 
