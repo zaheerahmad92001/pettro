@@ -21,8 +21,11 @@ const SearchInput = () => {
       }, 2000);
       return;
     }
-
-    router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
+    const toSlug = (str: string) => {
+      return str.trim().toLowerCase().replace(/\s+/g, "-");
+    };
+    const query = toSlug(searchTerm)
+    router.push(`/search?q=${encodeURIComponent(query)}`);
   };
 
   // const handleSearch = () => {

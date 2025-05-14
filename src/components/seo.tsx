@@ -22,17 +22,18 @@ export function generatePageMetadata({
   locale = 'en_US',
   author,
 }: GenerateMetadataParams): Metadata {
-  const canonicalUrl = `https://www.pettro.co/${slug.replace(/^\/+/, '')}`;
+  const canonicalUrl = slug
+  ? `https://pettro.co/${slug.replace(/^\/+|\/+$/g, '')}`
+  : `https://pettro.co/`;
 
   return {
     title,
     description,
     keywords,
-    // Tell crawlers which URL is canonical
     alternates: { canonical: canonicalUrl },
 
     // Standard Meta
-    metadataBase: new URL('https://www.pettro.co'),
+    metadataBase: new URL('https://pettro.co/'),
     authors: author ? [{ name: author }] : undefined,
 
     // Open Graph for Facebook, LinkedIn, etc.
@@ -64,47 +65,3 @@ export function generatePageMetadata({
     },
   };
 }
-
-
-
-// // lib/seo.ts
-// import { Metadata } from 'next';
-
-// interface GenerateMetadataParams {
-//   title: string;
-//   description: string;
-//   slug: string; // e.g., "/blog/my-article"
-//   image?: string;
-// }
-
-// export function generatePageMetadata({
-//   title,
-//   description,
-//   slug,
-//   image = '/pettro-img.png',
-// }: GenerateMetadataParams): Metadata {
-//   const fullUrl = `https://www.pettro.co/${slug}`;
-
-//   return {
-//     title: `${title}`,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       url: fullUrl,
-//       images: [
-//         {
-//           url: image,
-//           width: 1200,
-//           height: 630,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: 'summary_large_image',
-//       title,
-//       description,
-//       images: [image],
-//     },
-//   };
-// }

@@ -33,12 +33,15 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   });
 }
 
+
 export async function generateStaticParams() {
   const allPairs = await getAllCategorySubcategoryPairs();
   return allPairs?.map((item) => {
     return({
     category: encodeURIComponent(item.category),
     slug: encodeURIComponent(item.subcategory)
+    // slug: item?.item.subcategory==='Food'?encodeURIComponent('food-and-diet'): encodeURIComponent(item.subcategory)
+
   })}
 );
 }
@@ -47,7 +50,6 @@ export default async function Page({ params }: { params: { category:string, slug
   const slug = decodeURIComponent(params.slug);
   const category = decodeURIComponent(params.category);
   const formatted = formatTitle(slug);
-
   const response = await getCategoryTitle(
     category,
     formatted === "Food And Diet" ? "Food" : formatted

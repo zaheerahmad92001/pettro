@@ -91,7 +91,6 @@ export default function Home() {
     )
     .slice(0, 3);
 
-  console.log("horseFood", horseFood);
   return (
     <main className="flex flex-col min-w-screen min-h-screen">
       {loading && <Loader />}
