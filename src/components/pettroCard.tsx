@@ -25,6 +25,7 @@ const PettroCard: React.FC<PattroCardProps> = (props: PattroCardProps) => {
 
   const heading = firstTextContent?.value;
   const petImage = categoryImage?.src;
+  const imgAlt = categoryImage?.alt;
 
 
   const handleClick = () => {
@@ -47,7 +48,7 @@ const PettroCard: React.FC<PattroCardProps> = (props: PattroCardProps) => {
           <div className="overflow-hidden h-auto md:h-[190px] flex-shrink-0 rounded-t-lg">
             <Image
               src={petImage ? petImage : "/dog-1.jpg"}
-              alt="Pettro Card"
+              alt={imgAlt ? imgAlt : 'Pettro'}
               layout="responsive"
               width={350}
               height={300}

@@ -39,7 +39,7 @@ const handleClick = (item:ContentItem) => {
         {/* Ensure imageBase64 is a valid base64 string */}
         <Image
           src={statistics?.imageBase64 ?? null}
-          alt="Hero-dog"
+          alt="Golden Labrador Retriever sitting in a park"
           layout="responsive"
           width={100}
           height={100}

@@ -53,6 +53,7 @@ export interface Statistics {
     type: string;
     value: string;
     src:string;
+    alt:string;
   }
   export interface ContentItem {
     id: string;
