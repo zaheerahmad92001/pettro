@@ -1,0 +1,16 @@
+{
+    "redirects": [
+      {
+        "source": "/:path*",
+        "has": [
+          {
+            "type": "host",
+            "value": "pettro.co"
+          }
+        ],
+        "destination": "https://www.pettro.co/:path*",
+        "permanent": true
+      }
+    ]
+  }
+  
