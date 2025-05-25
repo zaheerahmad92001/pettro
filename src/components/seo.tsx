@@ -23,8 +23,8 @@ export function generatePageMetadata({
   author,
 }: GenerateMetadataParams): Metadata {
   const canonicalUrl = slug
-  ? `https://pettro.co/${slug.replace(/^\/+|\/+$/g, '')}`
-  : `https://pettro.co/`;
+  ? `https://www.pettro.co/${slug.replace(/^\/+|\/+$/g, '')}`
+  : `https://www.pettro.co/`;
 
   return {
     title,
@@ -33,7 +33,7 @@ export function generatePageMetadata({
     alternates: { canonical: canonicalUrl },
 
     // Standard Meta
-    metadataBase: new URL('https://pettro.co/'),
+    metadataBase: new URL('https://www.pettro.co/'),
     authors: author ? [{ name: author }] : undefined,
 
     // Open Graph for Facebook, LinkedIn, etc.
