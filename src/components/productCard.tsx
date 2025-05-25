@@ -30,7 +30,7 @@ const ProductCard = ({ index, item }) => {
         <div className="w-full flex justify-center items-center mt-4">
           <Image
             src={item?.src ?? null}
-            alt="Product Image"
+            alt="A happy dog, cat, and horse in a sunny outdoor setting, representing pet health and care"
             width={500}
             height={500}
             className="object-contain rounded-lg w-full max-w-[400px] md:max-w-[500px] lg:max-w-[600px] max-h-[500px]"
@@ -39,13 +39,23 @@ const ProductCard = ({ index, item }) => {
       )}
 
       {/* Product Video */}
-      {item?.video && (
-        <div className="flex justify-center">
-          <video controls className="rounded-lg w-full max-w-[500px] h-auto">
-            <source src={item.video} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+      {item?.type === 'video' && (
+        <div className="flex justify-center mt-16">
+          <iframe
+            className="rounded-lg w-full max-w-[700px] h-[381px]"
+            src={`https://www.youtube.com/embed/${item?.url}?rel=0`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
         </div>
+        // <div className="flex justify-center">
+        //   <video controls className="rounded-lg w-full max-w-[500px] h-auto">
+        //     <source src={'https://youtu.be/C4kNh70E9x8'} type="video/mp4" />
+        //     Your browser does not support the video tag.
+        //   </video>
+        // </div>
       )}
 
       {item?.type === "bulklinks" && item?.links?.length > 0 && (

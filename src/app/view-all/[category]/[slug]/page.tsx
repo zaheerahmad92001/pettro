@@ -26,7 +26,7 @@ export async function generateMetadata({ params }): Promise<Metadata> {
   return generatePageMetadata({
     title: title,
     description:description,
-    slug: `/view-all/${decodedCategory}/${formatted === "Food And Diet" ? "Food" : formatted}`,
+    slug: `/view-all/${decodedCategory}/${formatted === "Food And Diet" ? "food-and-diet" :formatted ==='Behavior And Training'? 'behavior-and-training':formatted.toLocaleLowerCase()}`,
     image: '/pettro-img.png',
     keywords:keyword,
     author:'pettro.co'
@@ -50,6 +50,7 @@ export default async function Page({ params }: { params: { category:string, slug
   const slug = decodeURIComponent(params.slug);
   const category = decodeURIComponent(params.category);
   const formatted = formatTitle(slug);
+  console.log('formatted', formatted)
   const response = await getCategoryTitle(
     category,
     formatted === "Food And Diet" ? "Food" : formatted
