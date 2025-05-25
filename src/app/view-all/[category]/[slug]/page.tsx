@@ -50,7 +50,6 @@ export default async function Page({ params }: { params: { category:string, slug
   const slug = decodeURIComponent(params.slug);
   const category = decodeURIComponent(params.category);
   const formatted = formatTitle(slug);
-  console.log('formatted', formatted)
   const response = await getCategoryTitle(
     category,
     formatted === "Food And Diet" ? "Food" : formatted
