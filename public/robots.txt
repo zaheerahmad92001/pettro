@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.pettro.co
+Host: https://pettro.co
 
 # Sitemaps
-Sitemap: https://www.pettro.co/sitemap.xml
+Sitemap: https://pettro.co/sitemap.xml

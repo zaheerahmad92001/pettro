@@ -33,7 +33,7 @@ export function generatePageMetadata({
     alternates: { canonical: canonicalUrl },
 
     // Standard Meta
-    metadataBase: new URL('https://www.pettro.co/'),
+    metadataBase: new URL('https://pettro.co/'),
     authors: author ? [{ name: author }] : undefined,
 
     // Open Graph for Facebook, LinkedIn, etc.
