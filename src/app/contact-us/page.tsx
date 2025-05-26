@@ -1,6 +1,16 @@
-"use client";
 import { BaseHeading } from "@/components/heading";
+import { generatePageMetadata } from "@/components/seo";
+import { Metadata } from "next";
 import React from "react";
+
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Contact Pettro |Trusted Help for Pet Owners & Partners",
+  description: "Have questions, suggestions, or feedback? Contact Pettro’s team of pet care experts. We're here to help with inquiries, support, and collaborations. Get in touch today!.",
+  keywords:['Pettro contact, contact Pettro, Pettro support, get in touch Pettro, pet app support, pet care contact, pet app feedback, contact pet app team, Pettro help, Pettro customer service, talk to Pettro, Pettro email'],
+  slug: "/contact-us",
+  image: "/pettro-img.png",
+});
 
 const ContactUs = () => {
   return (

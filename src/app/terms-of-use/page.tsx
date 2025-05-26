@@ -1,7 +1,16 @@
-'use client'
-
 import { BaseHeading, SmallHeading } from "@/components/heading";
+import { generatePageMetadata } from "@/components/seo";
+import { Metadata } from "next";
 import React from "react";
+
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Terms of Use | Pettro - Guidelines for Using Our Pet Care Platform",
+  description: "Review Pettro’s Terms of Use to understand your rights and responsibilities when accessing our pet care website and services. Your trust and safety matter to us.",
+  keywords:[`Pettro terms of use, user agreement, pet care platform rules, website terms, service agreement, user responsibilities, platform guidelines, acceptable use policy`],
+  slug: "/terms-of-use",
+  image: "/pettro-img.png",
+});
 
 const TermsOfUse = () => {
   return (

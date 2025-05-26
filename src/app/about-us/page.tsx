@@ -1,7 +1,18 @@
-"use client";
-
 import { BaseHeading, SmallHeading } from "@/components/heading";
+import { generatePageMetadata } from "@/components/seo";
+import { Metadata } from "next";
 import React from "react";
+
+
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "About Pettro | Your Trusted Source for Pet Care, Health & Wellness",
+  description: "Discover Pettro your dedicated partner in pet care, health, and wellness. Learn about our mission, values, and commitment to supporting pet lovers and professionals worldwide.",
+  keywords:['Pettro, about Pettro, pet care company, pet wellness, pet health experts, who we are Pettro, pet care mission, pet professionals, pet lover support'],
+  slug: "/about-us",
+  image: "/pettro-img.png",
+});
+
 
 const AboutUs = () => {
   return (

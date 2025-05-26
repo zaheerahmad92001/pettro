@@ -1,7 +1,17 @@
-"use client";
 import { SmallHeading , BaseHeading, XsmallHeading } from "@/components/heading";
+import { generatePageMetadata } from "@/components/seo";
+import { Metadata } from "next";
 
 import React from "react";
+
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Privacy Policy | Pettro - Your Trust Matters in Pet Care",
+  description: "Read Pettro's Privacy Policy to understand how we collect, use, and protect your personal data. Your privacy is our priority in every pet care interaction.",
+  keywords:[`Read Pettro's Privacy Policy to understand how we collect, use, and protect your personal data. Your privacy is our priority in every pet care interaction`],
+  slug: "/privacy-policy",
+  image: "/pettro-img.png",
+});
 
 const PrivacyPolicy = () => {
   return (
