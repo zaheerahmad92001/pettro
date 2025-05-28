@@ -311,7 +311,7 @@ import Home from './landingPage';
 // }
 
 export const metadata: Metadata = generatePageMetadata({
-  title: "Complete Pet Care Guide: Dog ,Cat,Horse & Small Pet`s Breeds, Food ,Health & PetLiving and Training",
+  title: "Pettro - Complete Pet Care Guide: Dogs, Cats, Horses & Small Pets",
   description: "Expert pet care advice for dog and cat breeds, health tips, best pet food, and supplement guides to keep your pet happy and healthy.",
   slug: "/",
   image: "/pettro-img.png",
