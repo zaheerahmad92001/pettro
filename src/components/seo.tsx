@@ -59,7 +59,7 @@ export function generatePageMetadata({
       card: 'summary_large_image',
       title,
       description,
-      images: [image],
+      images:'/pettro-img.png',
       site: '@PettroCo',
       creator: author ?? '@PettroCo',
     },
