@@ -37,10 +37,22 @@ const ProductCard = ({ index, item }) => {
           />
         </div>
       )}
-
+      {console.log(`https://www.youtube.com/embed/${item?.url}?rel=0`)}
       {/* Product Video */}
-      {item?.type === 'video' && (
-        <div className="flex justify-center mt-16">
+      {item?.type === "video" && (
+         
+        <div className="flex justify-center mt-12">
+          <div className="w-full">
+            <div className="mb-4">
+          <a
+            href={`https://www.youtube.com/watch?v=${item?.url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline text-sm "
+          >
+            Watch this video on YouTube
+          </a>
+          </div>
           <iframe
             className="rounded-lg w-full max-w-[700px] h-[381px]"
             src={`https://www.youtube.com/embed/${item?.url}?rel=0`}
@@ -49,13 +61,9 @@ const ProductCard = ({ index, item }) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           ></iframe>
+          </div>
         </div>
-        // <div className="flex justify-center">
-        //   <video controls className="rounded-lg w-full max-w-[500px] h-auto">
-        //     <source src={'https://youtu.be/C4kNh70E9x8'} type="video/mp4" />
-        //     Your browser does not support the video tag.
-        //   </video>
-        // </div>
+
       )}
 
       {item?.type === "bulklinks" && item?.links?.length > 0 && (
