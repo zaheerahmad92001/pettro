@@ -32,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* ✅ Structured data for organization/logo */}
         <Script
           type="application/ld+json"
           id="ld-json-org"
