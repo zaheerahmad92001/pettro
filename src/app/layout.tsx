@@ -8,6 +8,7 @@ import Footer from "@/components/footer";
 import ReduxProvider from "@/redux/reduxProvider";
 import ReactQueryProvider from "./api/ReactQueryProvider";
 import { Analytics } from '@vercel/analytics/next';
+import Script from "next/script";
 
 
 const geistMono = Geist_Mono({
@@ -30,6 +31,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Structured data for organization/logo */}
+        <Script
+          type="application/ld+json"
+          id="ld-json-org"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Pettro",
+              url: "https://www.pettro.co",
+              logo: "https://www.pettro.co/pettro-img-ld.png",
+            }),
+          }}
+        />
+      </head>
       <body
         className={`${geistMono.variable}
           antialiased bg-white` }
