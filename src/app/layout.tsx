@@ -7,9 +7,8 @@ import AppLinks from "@/components/applinks/appLinks";
 import Footer from "@/components/footer";
 import ReduxProvider from "@/redux/reduxProvider";
 import ReactQueryProvider from "./api/ReactQueryProvider";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -42,23 +41,27 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Pettro",
               url: "https://www.pettro.co",
-              logo: "https://www.pettro.co/pettro-img-ld.png",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.pettro.co/pettro-img-ld.png",
+              },
+              // logo: "https://www.pettro.co/pettro-img-ld.png",
             }),
           }}
         />
       </head>
       <body
         className={`${geistMono.variable}
-          antialiased bg-white` }
+          antialiased bg-white`}
       >
         <ReduxProvider>
-        <ReactQueryProvider>
-        <Navbar/>
-        <AppLinks />
-        {children}
-        <Analytics />
-        <Footer/>
-        </ReactQueryProvider>
+          <ReactQueryProvider>
+            <Navbar />
+            <AppLinks />
+            {children}
+            <Analytics />
+            <Footer />
+          </ReactQueryProvider>
         </ReduxProvider>
       </body>
     </html>
