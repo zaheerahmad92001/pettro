@@ -24,7 +24,7 @@ export const usePetCareContent = () => {
 export const useHomeContentByCategories = (categoriesWithSubcategories: CategoryWithSubcategory[]) => {
   return useQuery({
     queryKey: ["homeContent", categoriesWithSubcategories],
-    queryFn: () => fetchHomeContentByCategories(),
+    queryFn: () => fetchHomeContentByCategories(categoriesWithSubcategories),
     // enabled: categoriesWithSubcategories.length > 0,
     staleTime: 1000 * 60 * 30,
   });
