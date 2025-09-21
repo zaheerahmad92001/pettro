@@ -29,8 +29,9 @@ const PettroCard: React.FC<PattroCardProps> = (props: PattroCardProps) => {
 
 
   const handleClick = () => {
+  console.log('here is item', item)
     if(!item) return;
-    console.log('here is item', item[0].value)
+    // console.log('here is item', item[0].value)
     dispatch(setDetail(item));
     router.push(`/detail/${id}`);
   };

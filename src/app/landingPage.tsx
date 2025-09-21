@@ -42,48 +42,48 @@ export default function Home() {
     categoriesWithSubcategories
   );
 
-  // const DogBreedsData = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Breeds"
-  //   )
-  //   .slice(0, 4);
-  // const DogFoodData = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Food"
-  //   )
-  //   .slice(0, 4);
-  // const DogHealthData = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Health"
-  //   )
-  //   .slice(0, 4);
-  // const catBreeds = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "cats" && item?.subcategoryId === "Breeds"
-  //   )
-  //   .slice(0, 4);
-  // const catHealth = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "cats" && item?.subcategoryId === "Health"
-  //   )
-  //   .slice(0, 4);
-  // const catFood = homeContent
-  //   ?.filter(
-  //     (item) => item?.categoryId === "cats" && item?.subcategoryId === "Food"
-  //   )
-  //   .slice(0, 4);
-  // const horseBreeds = homeContent
-  //   ?.filter(
-  //     (item) =>
-  //       item?.categoryId === "horses" && item?.subcategoryId === "Breeds"
-  //   )
-  //   .slice(0, 4);
-  // const horseHealth = homeContent
-  //   ?.filter(
-  //     (item) =>
-  //       item?.categoryId === "horses" && item?.subcategoryId === "Health"
-  //   )
-  //   .slice(0, 4);
+  const DogBreedsData = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Breeds"
+    )
+    .slice(0, 4);
+  const DogFoodData = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Food"
+    )
+    .slice(0, 4);
+  const DogHealthData = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "dogs" && item?.subcategoryId === "Health"
+    )
+    .slice(0, 4);
+  const catBreeds = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "cats" && item?.subcategoryId === "Breeds"
+    )
+    .slice(0, 4);
+  const catHealth = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "cats" && item?.subcategoryId === "Health"
+    )
+    .slice(0, 4);
+  const catFood = homeContent
+    ?.filter(
+      (item) => item?.categoryId === "cats" && item?.subcategoryId === "Food"
+    )
+    .slice(0, 4);
+  const horseBreeds = homeContent
+    ?.filter(
+      (item) =>
+        item?.categoryId === "horses" && item?.subcategoryId === "Breeds"
+    )
+    .slice(0, 4);
+  const horseHealth = homeContent
+    ?.filter(
+      (item) =>
+        item?.categoryId === "horses" && item?.subcategoryId === "Health"
+    )
+    .slice(0, 4);
 
   const horseFood = homeContent
     ?.filter(
@@ -132,7 +132,7 @@ console.log('horseFood',horseFood)
           <ViewAllHeading title="Dog Breeds" category="dogs" url="breeds" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-              {homeContent?.map((item, index) => {
+              {DogBreedsData?.map((item, index) => {
                 return (
                   <div key={index}>
                     <PettroCard item={item} section={"Dog Breeds"} />
@@ -143,7 +143,7 @@ console.log('horseFood',horseFood)
           </div>
         </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading title="Dog Health" category="dogs" url="health" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
@@ -156,9 +156,9 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading
             title="Dog Food"
             category="dogs"
@@ -176,9 +176,9 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading title="Cat Breeds" category="cats" url="breeds" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
@@ -191,9 +191,9 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading title="Cat Health" category="cats" url="health" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
@@ -206,9 +206,9 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading
             title="Cat Food"
             category="cats"
@@ -225,12 +225,12 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
         <PetCareContact data={petCareData} />
         {/* <PetCareContact data={{ petCareConnect: petCareData }} /> */}
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading title="Horse Breeds" category="horses" url="breeds" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
@@ -243,9 +243,9 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
-        {/* <div className="mt-2">
+        <div className="mt-2">
           <ViewAllHeading title="Horse Health" category="horses" url="health" />
           <div className="container mx-auto px-4 py-4 ">
             <div className=" grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
@@ -258,7 +258,7 @@ console.log('horseFood',horseFood)
               })}
             </div>
           </div>
-        </div> */}
+        </div>
 
         <OurMission data={petCareData} />
       </div>

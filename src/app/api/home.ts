@@ -34,41 +34,17 @@ export const fetchPetCareContent = async (): Promise<PetCareData> => {
 
  
 
-// export const fetchHomeContentByCategories = async (
-//   categoriesWithSubcategories: CategoryWithSubcategory[]
-// ): Promise<ContentItem[]> => {
-//   try {
-//     const promises = categoriesWithSubcategories.map(async ({ categoryId, subcategoryId }) => {
-//       const q = query(
-//         collection(db, "content"),
-//         where("categoryId", "==", categoryId),
-//         where("subcategoryId", "==", subcategoryId),
-//         orderBy("createdAt", "asc"),
-//         limit(4)
-//       );
-
-//       const snapshot = await getDocs(q);
-//       return snapshot.docs.map((doc) => ({
-//         id: doc.id,
-//         ...doc.data(),
-//       })) as ContentItem[];
-//     });
-
-//     const results = await Promise.all(promises);
-//     return results.flat();
-//   } catch (error) {
-//     throw new Error(getErrorMessage(error));
-//   }
-// };
-
-
-export const fetchHomeContentByCategories = async (): Promise<ContentItem[]> => {
+export const fetchHomeContentByCategories = async (
+  categoriesWithSubcategories: CategoryWithSubcategory[]
+): Promise<ContentItem[]> => {
   try {
-    
+    const promises = categoriesWithSubcategories.map(async ({ categoryId, subcategoryId }) => {
       const q = query(
         collection(db, "content"),
+        where("categoryId", "==", categoryId),
+        where("subcategoryId", "==", subcategoryId),
         orderBy("createdAt", "asc"),
-        limit(40)
+        limit(4)
       );
 
       const snapshot = await getDocs(q);
@@ -76,8 +52,32 @@ export const fetchHomeContentByCategories = async (): Promise<ContentItem[]> => 
         id: doc.id,
         ...doc.data(),
       })) as ContentItem[];
+    });
+
+    const results = await Promise.all(promises);
+    return results.flat();
   } catch (error) {
     throw new Error(getErrorMessage(error));
   }
 };
+
+
+// export const fetchHomeContentByCategories = async (): Promise<ContentItem[]> => {
+//   try {
+    
+//       const q = query(
+//         collection(db, "content"),
+//         orderBy("createdAt", "asc"),
+//         limit(40)
+//       );
+
+//       const snapshot = await getDocs(q);
+//       return snapshot.docs.map((doc) => ({
+//         id: doc.id,
+//         ...doc.data(),
+//       })) as ContentItem[];
+//   } catch (error) {
+//     throw new Error(getErrorMessage(error));
+//   }
+// };
 

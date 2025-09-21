@@ -29,8 +29,9 @@ const HeroSection = (props: HeroSectionProps) => {
 const handleClick = (item:ContentItem) => {
     if(!item) return;
     const id = item?.id;
-    dispatch(setDetail(item));
+      console.log('here is click', item)
     router.push(`/detail/${id}`);
+    //  dispatch(setDetail(item));
   };
   return (
     <div 
